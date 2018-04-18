@@ -6,6 +6,7 @@ first rover will behave as a trainer and is controlled by a XBox controller.
 second rover follows the first rover.
 
 GUI should be updated as rovers move.
+
 Team members:
 James Beamer - Motors / Path-Finding Engineer
 
