@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package status;
+
+// TODO Define more debugger messages
+
+message request_complete {
+	uint32 sequence_number = 1;		// message number of the message completed
+}
+
+message request_resend {
+	uint32 sequence_number = 1;		// message number of the message to resend
+}
+
+message device_status {
+	bool server_up = 1;
+	bool controller_up = 2;
+	bool trainer_up = 3;
+	bool pikachu_up = 4;
+	bool emulator_up = 5;
+}
+
+message status_msg {
+	oneof msg {
+		request_complete done = 1;
+		request_resend again = 2;
+		device_status stats = 3;
+	}
+}

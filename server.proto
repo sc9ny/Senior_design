@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package server;
+
+import "sensor.proto";
+import "motor.proto";
+import "emulator.proto";
+import "status.proto";
+import "controller.proto";
+
+
+message server {
+	int32 sequence_number = 1;
+	string uid = 2; // So we dont use callbacks
+	oneof payload {
+		sensor.color_sensor color_data = 3;
+		sensor.ir_sensor ir_data = 4;
+
+		motor.motor_ctl mCmd = 5;
+		motor.motor_data data = 6;
+
+		emulator.battle_state battle = 7;
+		emulator.attacks atk = 8;
+
+		status.request_resend again = 9;
+		status.request_complete done = 10;
+		status.device_status health = 11;
+
+		controller.controller_msg ctl = 12;
+	}
+}
+
+
+
+
+

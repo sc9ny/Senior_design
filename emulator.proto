@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package emulator;
+
+message battle_state {
+	bool player_status = 1; 		// Win or Lose
+	uint32 match_inProgress = 2;	// 0 = Not Battle, 1 = Wild Battle, 2 = Trainer Battle
+}
+
+message attacks {
+	bool trainer = 1;			// Player or Rival
+	uint32 move = 2;			// move
+}
+
+message emu_msg {
+	oneof msg {
+		battle_state battle_ctl = 1;
+		attacks battle_move = 2;
+	}
+}

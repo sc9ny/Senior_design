@@ -52,17 +52,23 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-
-#include "color_sensor.h"
-#include "sensor_queue.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include "system_config.h"
 #include "system_definitions.h"
-#include "peripheral/i2c/plib_i2c.h"
-#include "peripheral/ports/plib_ports.h"
+
+#include "timers.h"
+
+
+
+#include "FreeRTOS.h"
+#include "queue.h"
+
+#include "system/debug/sys_debug.h"
+
+
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -121,7 +127,6 @@ typedef struct
 
 } APP_DATA;
 
-
 // *****************************************************************************
 // *****************************************************************************
 // Section: Application Callback Routines
@@ -169,6 +174,8 @@ typedef struct
 
 void APP_Initialize ( void );
 
+void vCallbackFunction( TimerHandle_t xTimer );
+
 
 /*******************************************************************************
   Function:
@@ -186,7 +193,7 @@ void APP_Initialize ( void );
     called before calling this.
 
   Parameters:
-    None.
+//    None.
 
   Returns:
     None.

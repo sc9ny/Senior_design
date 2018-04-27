@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package sensor;
+
+
+message ir_sensor {
+	uint32 distance = 1;
+}
+
+message color_sensor {
+	uint32 color_code = 1;
+	int32 x = 2;
+	int32 y = 3;
+}
+
+message sensor_msg {
+	oneof msg {
+		ir_sensor dist_data = 1;
+		color_sensor color_data = 2;
+	}
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package motor;
+
+
+message motor_ctl {
+	uint32 direction = 1; 	// 1 = N, 2 = S, 3 = E, 4 = Ws
+}
+
+message motor_data {
+	uint32 right_ticks = 1;		// Data from the encoder
+	uint32 cur_dir = 2;
+	uint32 left_ticks = 3;
+	uint32 right_err = 4;
+	uint32 left_err = 5;
+}
+
+message motor_msg {
+	oneof msg {
+		motor_ctl ctl_msg = 1;
+		motor_data data= 2;
+	}
+}
+
